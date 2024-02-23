@@ -39,7 +39,7 @@ class _CircleWidget extends StatelessWidget {
     return Container(
       width: 20.0,
       height: 20.0,
-      margin: const EdgeInsets.all(4.0),
+      margin: const EdgeInsets.only(right: 8),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: _color,

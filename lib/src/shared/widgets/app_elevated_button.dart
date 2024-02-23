@@ -72,7 +72,9 @@ class AppElevatedButton extends StatelessWidget {
     }
     return Text(
       text,
-      style: Theme.of(context).textTheme.titleLarge,
+      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            color: AppColorScheme.textOn,
+          ),
     );
   }
 }
