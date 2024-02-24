@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:test_system/src/features/submissions/model/submission.dart';
+import 'package:test_system/src/shared/colors/color_scheme.dart';
 import 'package:test_system/src/shared/enums/programming_language.dart';
-import 'package:test_system/src/shared/widgets/contest_complexity.dart';
+import 'package:test_system/src/shared/theme/text_theme.dart';
+import 'package:test_system/src/shared/widgets/complexity_widget.dart';
 import 'package:test_system/src/shared/widgets/contest_widget.dart';
+import 'package:test_system/src/shared/widgets/submission_widget.dart';
+
+import 'src/shared/widgets/task_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,26 +19,59 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(textTheme: AppTextTheme.light),
       home: Scaffold(
-        appBar: AppBar(),
-        body: Center(
+        backgroundColor: AppColorScheme.surface,
+        body: SingleChildScrollView(
           child: Column(
             children: [
-              const ContestComplexityWidget(
-                  complexity: ContestComplexity.veryEasy),
-              const ContestComplexityWidget(complexity: ContestComplexity.easy),
-              const ContestComplexityWidget(
-                  complexity: ContestComplexity.medium),
-              const ContestComplexityWidget(complexity: ContestComplexity.hard),
-              const ContestComplexityWidget(
-                  complexity: ContestComplexity.veryHard),
-              const SizedBox(height: 16),
+              const SizedBox(height: 56),
               ContestWidget(
                 name: 'Контест для практики',
                 endDate: DateTime.now(),
-                complexity: ContestComplexity.veryHard,
-                languages: const [ProgrammingLanguage.python, ProgrammingLanguage.dart, ProgrammingLanguage.cPlusPlus],
-              )
+                complexity: Complexity.veryHard,
+                languages: const [
+                  ProgrammingLanguage.python,
+                  ProgrammingLanguage.dart,
+                  ProgrammingLanguage.cPlusPlus
+                ],
+              ),
+              const SizedBox(height: 16),
+              TaskWidget(
+                name: 'Задача номер 1',
+                endDate: DateTime.now(),
+                complexity: Complexity.easy,
+                languages: const [
+                  ProgrammingLanguage.cSharp,
+                  ProgrammingLanguage.swift,
+                  ProgrammingLanguage.ruby
+                ],
+              ),
+              const SizedBox(height: 16),
+              const SubmissionWidget(
+                submission: Submission(
+                  id: '703',
+                  status: 'OK',
+                  //errorTest: '0',
+                  code: 'a = int(input())',
+                  language: ProgrammingLanguage.python,
+                  usedMemory: 1.2,
+                  usedTime: 1.2,
+                ),
+              ),
+              const SizedBox(height: 16),
+              const SubmissionWidget(
+                submission: Submission(
+                  id: '302',
+                  status: 'WA',
+                  errorTest: '0',
+                  code: 'a = int(input())',
+                  language: ProgrammingLanguage.kotlin,
+                  usedMemory: 5.2,
+                  usedTime: 0.54,
+                ),
+              ),
+              const SizedBox(height: 32)
             ],
           ),
         ),

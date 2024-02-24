@@ -4,7 +4,7 @@ abstract class AppColorScheme {
   static const primary = Color(0xFF0166FF);
   static const background = Color(0xFFF6F6F9);
   static const surface = Color(0xFFEBF3FF);
-
+  static const card = Color(0xFFFFFFFF);
 
   static const blackMain = Color(0xFF0C0D0E);
   static const blackSecondary = Color(0xFF4D535B);

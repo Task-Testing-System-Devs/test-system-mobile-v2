@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:test_system/src/shared/assets/app_assets.dart';
-import 'package:test_system/src/shared/colors/color_scheme.dart';
-import 'package:test_system/src/shared/widgets/complexity_widget.dart';
-import 'package:test_system/src/shared/widgets/universal_asset_image.dart';
 
+import '../assets/app_assets.dart';
+import '../colors/color_scheme.dart';
 import '../enums/programming_language.dart';
+import 'complexity_widget.dart';
+import 'universal_asset_image.dart';
 
-class ContestWidget extends StatelessWidget {
-  const ContestWidget({
+class TaskWidget extends StatelessWidget {
+  const TaskWidget({
     super.key,
     required this.name,
     required this.endDate,
@@ -33,7 +33,7 @@ class ContestWidget extends StatelessWidget {
             color: Colors.grey[300]!,
             offset: const Offset(0, 1),
             blurRadius: 5,
-          )
+          ),
         ],
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
