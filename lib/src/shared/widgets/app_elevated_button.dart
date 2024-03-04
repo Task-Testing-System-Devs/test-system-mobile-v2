@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_system/src/shared/colors/color_scheme.dart';
+import 'package:test_system/src/shared/colors/colors.dart';
 
 /// Enum for choosing button size. Large - height 56, medium - height 48, small - height 32.
 enum ButtonSize {
@@ -27,7 +27,7 @@ class AppElevatedButton extends StatelessWidget {
     Key? key,
     required this.text,
     required this.onPressed,
-    this.color = AppColorScheme.primary,
+    this.color = AppColors.primary,
     this.buttonSize = ButtonSize.large,
     this.buttonState = ButtonState.common,
   }) : super(key: key);
@@ -45,7 +45,7 @@ class AppElevatedButton extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(8)),
           ),
           backgroundColor: buttonState == ButtonState.disabled
-              ? AppColorScheme.actionDisabled
+              ? AppColors.actionDisabled
               : color,
         ),
         child: _child(context),
@@ -73,7 +73,7 @@ class AppElevatedButton extends StatelessWidget {
     return Text(
       text,
       style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            color: AppColorScheme.textOn,
+            color: AppColors.textOn,
           ),
     );
   }

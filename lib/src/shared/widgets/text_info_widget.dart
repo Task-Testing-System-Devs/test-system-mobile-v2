@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../colors/color_scheme.dart';
+import '../colors/colors.dart';
 
 class TextInfoWidget extends StatelessWidget {
   const TextInfoWidget({
@@ -30,7 +30,7 @@ class TextInfoWidget extends StatelessWidget {
         Text(
           secondary,
           style: theme.textTheme.bodySmall?.copyWith(
-            color: AppColorScheme.textSecondary,
+            color: AppColors.textSecondary,
           ),
         ),
       ],

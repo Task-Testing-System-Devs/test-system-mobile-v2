@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-import '../colors/color_scheme.dart';
+import '../colors/colors.dart';
 
 class AppTextField extends StatefulWidget {
   final TextEditingController controller;
@@ -9,6 +9,8 @@ class AppTextField extends StatefulWidget {
   final String hintText;
   final MaskTextInputFormatter? inputFormatter;
   final void Function(String)? onChanged;
+  final Widget? leading;
+  final bool isTextHidden;
 
   const AppTextField({
     Key? key,
@@ -17,6 +19,8 @@ class AppTextField extends StatefulWidget {
     this.inputFormatter,
     this.hintText = '',
     this.onChanged,
+    this.leading,
+    this.isTextHidden = false,
   }) : super(key: key);
 
   @override
@@ -34,16 +38,18 @@ class _AppTextFieldState extends State<AppTextField> {
       inputFormatters:
           widget.inputFormatter != null ? [widget.inputFormatter!] : null,
       decoration: InputDecoration(
-        enabledBorder: _textFieldBorder(AppColorScheme.border),
-        focusedBorder: _textFieldBorder(AppColorScheme.primary),
-        errorBorder: _textFieldBorder(AppColorScheme.criticalDefault),
+        prefixIcon: widget.leading,
+        enabledBorder: _textFieldBorder(AppColors.border),
+        focusedBorder: _textFieldBorder(AppColors.primary),
+        errorBorder: _textFieldBorder(AppColors.criticalDefault),
         hintText: widget.hintText,
         hintStyle: theme.textTheme.bodyLarge?.copyWith(
-          color: AppColorScheme.textSecondary,
+          color: AppColors.textSecondary,
         ),
       ),
+      obscureText: widget.isTextHidden,
       style: theme.textTheme.bodyLarge?.copyWith(
-        color: AppColorScheme.textMain,
+        color: AppColors.textMain,
       ),
       onChanged: (text) {
         if (widget.onChanged != null) {

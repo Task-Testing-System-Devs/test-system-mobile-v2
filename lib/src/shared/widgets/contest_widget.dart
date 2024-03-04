@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:test_system/src/shared/assets/app_assets.dart';
-import 'package:test_system/src/shared/colors/color_scheme.dart';
 import 'package:test_system/src/shared/widgets/complexity_widget.dart';
 import 'package:test_system/src/shared/widgets/universal_asset_image.dart';
 
+import '../colors/colors.dart';
 import '../enums/programming_language.dart';
 
 class ContestWidget extends StatelessWidget {
@@ -27,7 +27,7 @@ class ContestWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: AppColorScheme.card,
+        color: AppColors.card,
         boxShadow: [
           BoxShadow(
             color: Colors.grey[300]!,
@@ -56,7 +56,7 @@ class ContestWidget extends StatelessWidget {
                       Text(
                         'Решить до ${endDate.day}.${endDate.month}.${endDate.year}',
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: AppColorScheme.textSecondary,
+                          color: AppColors.textSecondary,
                         ),
                       ),
                     ],

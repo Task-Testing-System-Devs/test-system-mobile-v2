@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_system/src/shared/colors/color_scheme.dart';
+import 'package:test_system/src/shared/colors/colors.dart';
 
 enum Complexity {
   veryEasy,
@@ -50,13 +50,13 @@ class _CircleWidget extends StatelessWidget {
   Color get _color {
     switch ((index, complexity)) {
       case (0, Complexity.veryEasy):
-        return AppColorScheme.green;
+        return AppColors.green;
       case (0, Complexity.easy):
       case (1, Complexity.easy):
       case (0, Complexity.medium):
       case (1, Complexity.medium):
       case (2, Complexity.medium):
-        return AppColorScheme.orange;
+        return AppColors.orange;
       case (0, Complexity.hard):
       case (1, Complexity.hard):
       case (2, Complexity.hard):
@@ -66,9 +66,9 @@ class _CircleWidget extends StatelessWidget {
       case (2, Complexity.veryHard):
       case (3, Complexity.veryHard):
       case (4, Complexity.veryHard):
-        return AppColorScheme.red;
+        return AppColors.red;
       default:
-        return AppColorScheme.surface;
+        return AppColors.surface;
     }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../assets/app_assets.dart';
-import '../colors/color_scheme.dart';
+import '../colors/colors.dart';
 import '../enums/programming_language.dart';
 import 'complexity_widget.dart';
 import 'universal_asset_image.dart';
@@ -27,7 +27,7 @@ class TaskWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: AppColorScheme.card,
+        color: AppColors.card,
         boxShadow: [
           BoxShadow(
             color: Colors.grey[300]!,
@@ -56,7 +56,7 @@ class TaskWidget extends StatelessWidget {
                       Text(
                         'Решить до ${endDate.day}.${endDate.month}.${endDate.year}',
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: AppColorScheme.textSecondary,
+                          color: AppColors.textSecondary,
                         ),
                       ),
                     ],
