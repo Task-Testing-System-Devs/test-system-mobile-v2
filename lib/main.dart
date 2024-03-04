@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_system/src/features/auth/view/auth_page.dart';
 import 'package:test_system/src/features/submissions/model/submission.dart';
 import 'package:test_system/src/shared/enums/programming_language.dart';
+import 'package:test_system/src/shared/routing/go_router.dart';
 import 'package:test_system/src/shared/theme/color_scheme.dart';
 import 'package:test_system/src/shared/theme/text_theme.dart';
 import 'package:test_system/src/shared/widgets/app_text_field.dart';
@@ -13,21 +14,28 @@ import 'package:test_system/src/shared/widgets/submission_widget.dart';
 import 'src/shared/widgets/task_widget.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    UncontrolledProviderScope(
+      container: ProviderContainer(),
+      child: const MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+
     return ProviderScope(
-      child: MaterialApp(
+      child: MaterialApp.router(
         theme: ThemeData(
           textTheme: AppTextTheme.light,
           colorScheme: AppColorScheme.light,
         ),
-        home: const AuthPage(),
+        routerConfig: router,
         // home: Scaffold(
         //   backgroundColor: AppColorScheme.surface,
         //   body: SingleChildScrollView(

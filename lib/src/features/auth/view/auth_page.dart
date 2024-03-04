@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_system/src/shared/colors/colors.dart';
+import 'package:test_system/src/shared/routing/di/providers.dart';
 import 'package:test_system/src/shared/widgets/app_elevated_button.dart';
 import 'package:test_system/src/shared/widgets/app_text_field.dart';
 import 'package:test_system/src/shared/widgets/universal_asset_image.dart';
@@ -48,7 +49,9 @@ class AuthPage extends ConsumerWidget {
             const SizedBox(height: 32),
             AppElevatedButton(
               text: 'Авторизоваться',
-              onPressed: () {},
+              onPressed: () {
+                ref.read(navigationManagerProvider).go('/contests');
+              },
             ),
             const SizedBox(height: 16),
             Text(
