@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_system/src/shared/assets/app_assets.dart';
 
+import '../colors/colors.dart';
 import '../widgets/universal_asset_image.dart';
 
 class ScaffoldWithNavBar extends ConsumerStatefulWidget {
@@ -78,13 +79,12 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
                 onTap: () {
                   _goOtherTab(0, ref, context);
                 },
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-                activeIcon: const Icon(
-                  Icons.add,
-                  color: Colors.black,
+                icon: UniversalAssetImage(AppIcons.box, height: 32),
+                activeIcon: _ChosenIconWrap(
+                  UniversalAssetImage(
+                    AppIcons.box,
+                    fillWithColor: AppColors.card,
+                  ),
                 ),
                 padding: const EdgeInsets.only(
                   left: horizontalOuterPadding,
@@ -101,13 +101,12 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
                 onTap: () {
                   _goOtherTab(1, ref, context);
                 },
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-                activeIcon: const Icon(
-                  Icons.add,
-                  color: Colors.black,
+                icon: UniversalAssetImage(AppIcons.award, height: 32),
+                activeIcon: _ChosenIconWrap(
+                  UniversalAssetImage(
+                    AppIcons.award,
+                    fillWithColor: AppColors.card,
+                  ),
                 ),
                 padding: const EdgeInsets.only(
                   top: topPadding,
@@ -122,13 +121,12 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
                 onTap: () {
                   _goOtherTab(2, ref, context);
                 },
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-                activeIcon: const Icon(
-                  Icons.add,
-                  color: Colors.black,
+                icon: UniversalAssetImage(AppIcons.file, height: 32),
+                activeIcon: _ChosenIconWrap(
+                  UniversalAssetImage(
+                    AppIcons.file,
+                    fillWithColor: AppColors.card,
+                  ),
                 ),
                 padding: const EdgeInsets.only(
                   left: horizontalInnerPadding,
@@ -145,13 +143,12 @@ class _ScaffoldWithNavBarState extends ConsumerState<ScaffoldWithNavBar>
                 onTap: () {
                   _goOtherTab(3, ref, context);
                 },
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-                activeIcon: const Icon(
-                  Icons.add,
-                  color: Colors.black,
+                icon: UniversalAssetImage(AppIcons.user, height: 32),
+                activeIcon: _ChosenIconWrap(
+                  UniversalAssetImage(
+                    AppIcons.user,
+                    fillWithColor: AppColors.card,
+                  ),
                 ),
                 padding: const EdgeInsets.only(
                   left: horizontalInnerPadding,
@@ -252,6 +249,28 @@ class _NavigationButton extends StatelessWidget {
           duration: const Duration(milliseconds: 200),
           child: isActive ? activeIcon : icon,
         ),
+      ),
+    );
+  }
+}
+
+class _ChosenIconWrap extends StatelessWidget {
+  const _ChosenIconWrap(this.child);
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      height: 36,
+      width: 36,
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: child,
       ),
     );
   }

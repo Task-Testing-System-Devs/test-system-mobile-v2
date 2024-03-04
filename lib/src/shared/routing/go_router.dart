@@ -12,71 +12,73 @@ final navigatorKeyProvider = Provider<GlobalKey<NavigatorState>>((ref) {
   return GlobalKey<NavigatorState>();
 });
 
-final routerProvider = Provider<GoRouter>((ref) {
-  const initialLocation = '/auth';
+final routerProvider = Provider<GoRouter>(
+  (ref) {
+    const initialLocation = '/auth';
 
-  final contestRoutes = [
-    GoRoute(
-      path: '/contests',
-      builder: (context, page) => const ContestsPage(),
-    ),
-  ];
-
-  final ratingRoutes = [
-    GoRoute(
-      path: '/rating',
-      builder: (context, page) => const RatingPage(),
-    ),
-  ];
-
-  final submissionRoutes = [
-    GoRoute(
-      path: '/submissions',
-      builder: (context, page) => const SubmissionsPage(),
-    ),
-  ];
-
-  final profileRoutes = [
-    GoRoute(
-      path: '/profile',
-      builder: (context, page) => const ProfilePage(),
-    ),
-  ];
-
-  final router = GoRouter(
-    navigatorKey: ref.watch(navigatorKeyProvider),
-    initialLocation: initialLocation,
-    routes: [
+    final contestRoutes = [
       GoRoute(
-        path: '/auth',
-        pageBuilder: (context, state) => const NoTransitionPage(
-          child: AuthPage(),
+        path: '/contests',
+        builder: (context, page) => const ContestsPage(),
+      ),
+    ];
+
+    final ratingRoutes = [
+      GoRoute(
+        path: '/rating',
+        builder: (context, page) => const RatingPage(),
+      ),
+    ];
+
+    final submissionRoutes = [
+      GoRoute(
+        path: '/submissions',
+        builder: (context, page) => const SubmissionsPage(),
+      ),
+    ];
+
+    final profileRoutes = [
+      GoRoute(
+        path: '/profile',
+        builder: (context, page) => const ProfilePage(),
+      ),
+    ];
+
+    final router = GoRouter(
+      navigatorKey: ref.watch(navigatorKeyProvider),
+      initialLocation: initialLocation,
+      routes: [
+        GoRoute(
+          path: '/auth',
+          pageBuilder: (context, state) => const NoTransitionPage(
+            child: AuthPage(),
+          ),
         ),
-      ),
-      StatefulShellRoute(
-        branches: [
-          StatefulShellBranch(
-            routes: contestRoutes,
-          ),
-          StatefulShellBranch(
-            routes: ratingRoutes,
-          ),
-          StatefulShellBranch(
-            routes: submissionRoutes,
-          ),
-          StatefulShellBranch(
-            routes: profileRoutes,
-          ),
-        ],
-        builder: (context, state, navigationShell) => navigationShell,
-        navigatorContainerBuilder: (context, navigationShell, children) {
-          return ScaffoldWithNavBar(
-            navigationShell: navigationShell,
-            children: children,
-          );
-        },
-      ),
-    ],
-  );
-  return router;
-});
+        StatefulShellRoute(
+          branches: [
+            StatefulShellBranch(
+              routes: contestRoutes,
+            ),
+            StatefulShellBranch(
+              routes: ratingRoutes,
+            ),
+            StatefulShellBranch(
+              routes: submissionRoutes,
+            ),
+            StatefulShellBranch(
+              routes: profileRoutes,
+            ),
+          ],
+          builder: (context, state, navigationShell) => navigationShell,
+          navigatorContainerBuilder: (context, navigationShell, children) {
+            return ScaffoldWithNavBar(
+              navigationShell: navigationShell,
+              children: children,
+            );
+          },
+        ),
+      ],
+    );
+    return router;
+  },
+);
