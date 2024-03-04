@@ -3,8 +3,8 @@ import 'package:test_system/src/shared/assets/app_assets.dart';
 import 'package:test_system/src/shared/widgets/complexity_widget.dart';
 import 'package:test_system/src/shared/widgets/universal_asset_image.dart';
 
-import '../colors/colors.dart';
-import '../enums/programming_language.dart';
+import '../../../../shared/colors/colors.dart';
+import '../../../../shared/enums/programming_language.dart';
 
 class ContestWidget extends StatelessWidget {
   const ContestWidget({

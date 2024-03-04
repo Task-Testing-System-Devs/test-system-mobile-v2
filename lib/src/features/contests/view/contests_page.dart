@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_system/src/shared/enums/programming_language.dart';
 import 'package:test_system/src/shared/widgets/complexity_widget.dart';
-import 'package:test_system/src/shared/widgets/contest_widget.dart';
+import 'package:test_system/src/features/contests/view/widgets/contest_widget.dart';
 
 class ContestsPage extends StatelessWidget {
   const ContestsPage({super.key});

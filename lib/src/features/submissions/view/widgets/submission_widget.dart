@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:test_system/src/shared/widgets/text_info_widget.dart';
 import 'package:test_system/src/shared/widgets/universal_asset_image.dart';
 
-import '../../features/submissions/model/submission.dart';
-import '../colors/colors.dart';
+import '../../model/submission.dart';
+import '../../../../shared/colors/colors.dart';
 
 class SubmissionWidget extends StatefulWidget {
   final Submission submission;

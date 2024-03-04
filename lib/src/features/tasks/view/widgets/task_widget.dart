@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../assets/app_assets.dart';
-import '../colors/colors.dart';
-import '../enums/programming_language.dart';
-import 'complexity_widget.dart';
-import 'universal_asset_image.dart';
+import '../../../../shared/assets/app_assets.dart';
+import '../../../../shared/colors/colors.dart';
+import '../../../../shared/enums/programming_language.dart';
+import '../../../../shared/widgets/complexity_widget.dart';
+import '../../../../shared/widgets/universal_asset_image.dart';
 
 class TaskWidget extends StatelessWidget {
   const TaskWidget({

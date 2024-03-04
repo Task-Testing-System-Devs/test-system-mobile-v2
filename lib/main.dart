@@ -8,10 +8,10 @@ import 'package:test_system/src/shared/theme/color_scheme.dart';
 import 'package:test_system/src/shared/theme/text_theme.dart';
 import 'package:test_system/src/shared/widgets/app_text_field.dart';
 import 'package:test_system/src/shared/widgets/complexity_widget.dart';
-import 'package:test_system/src/shared/widgets/contest_widget.dart';
-import 'package:test_system/src/shared/widgets/submission_widget.dart';
+import 'package:test_system/src/features/contests/view/widgets/contest_widget.dart';
+import 'package:test_system/src/features/submissions/view/widgets/submission_widget.dart';
 
-import 'src/shared/widgets/task_widget.dart';
+import 'src/features/tasks/view/widgets/task_widget.dart';
 
 void main() {
   runApp(

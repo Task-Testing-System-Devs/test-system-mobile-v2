@@ -5,7 +5,7 @@ import '../colors/colors.dart';
 abstract class AppColorScheme {
   static final light = const ColorScheme.light().copyWith(
     primary: AppColors.primary,
-    background: AppColors.surface,
+    background: AppColors.background,
     surface: AppColors.background,
   );
 }

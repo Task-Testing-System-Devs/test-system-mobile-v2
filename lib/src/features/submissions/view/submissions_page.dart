@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_system/src/features/submissions/model/submission.dart';
-import 'package:test_system/src/shared/widgets/submission_widget.dart';
+import 'package:test_system/src/features/submissions/view/widgets/submission_widget.dart';
 
 import '../../../shared/enums/programming_language.dart';
 
