@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_system/src/features/auth/view/auth_page.dart';
-import 'package:test_system/src/features/submissions/model/submission.dart';
-import 'package:test_system/src/shared/enums/programming_language.dart';
+import 'package:test_system/src/features/auth/di/providers.dart';
+
 import 'package:test_system/src/shared/routing/go_router.dart';
 import 'package:test_system/src/shared/theme/color_scheme.dart';
 import 'package:test_system/src/shared/theme/text_theme.dart';
-import 'package:test_system/src/shared/widgets/app_text_field.dart';
-import 'package:test_system/src/shared/widgets/complexity_widget.dart';
-import 'package:test_system/src/features/contests/view/widgets/contest_widget.dart';
-import 'package:test_system/src/features/submissions/view/widgets/submission_widget.dart';
 
-import 'src/features/tasks/view/widgets/task_widget.dart';
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
+  final container = ProviderContainer();
+
+  await container.read(authManagerProvider).authFromStorage();
+
   runApp(
     UncontrolledProviderScope(
-      container: ProviderContainer(),
+      container: container,
       child: const MyApp(),
     ),
   );
@@ -36,73 +35,6 @@ class MyApp extends ConsumerWidget {
           colorScheme: AppColorScheme.light,
         ),
         routerConfig: router,
-        // home: Scaffold(
-        //   backgroundColor: AppColorScheme.surface,
-        //   body: SingleChildScrollView(
-        //     child: Column(
-        //       children: [
-        //         const SizedBox(height: 56),
-        //         ContestWidget(
-        //           name: 'Контест для практики',
-        //           endDate: DateTime.now(),
-        //           complexity: Complexity.veryHard,
-        //           languages: const [
-        //             ProgrammingLanguage.python,
-        //             ProgrammingLanguage.dart,
-        //             ProgrammingLanguage.cPlusPlus
-        //           ],
-        //         ),
-        //         const SizedBox(height: 16),
-        //         TaskWidget(
-        //           name: 'Задача номер 1',
-        //           endDate: DateTime.now(),
-        //           complexity: Complexity.easy,
-        //           languages: const [
-        //             ProgrammingLanguage.cSharp,
-        //             ProgrammingLanguage.swift,
-        //             ProgrammingLanguage.ruby
-        //           ],
-        //         ),
-        //         const SizedBox(height: 16),
-        //         const SubmissionWidget(
-        //           submission: Submission(
-        //             id: '703',
-        //             status: 'OK',
-        //             //errorTest: '0',
-        //             code: 'a = int(input())',
-        //             language: ProgrammingLanguage.python,
-        //             usedMemory: 1.2,
-        //             usedTime: 1.2,
-        //           ),
-        //         ),
-        //         const SizedBox(height: 16),
-        //         const SubmissionWidget(
-        //           submission: Submission(
-        //             id: '302',
-        //             status: 'WA',
-        //             errorTest: '0',
-        //             code: 'a = int(input())',
-        //             language: ProgrammingLanguage.kotlin,
-        //             usedMemory: 5.2,
-        //             usedTime: 0.54,
-        //           ),
-        //         ),
-        //         const SizedBox(height: 32),
-        //         Container(
-        //           color: Colors.white,
-        //           child: AppTextField(
-        //             controller: TextEditingController(),
-        //             leading: const Icon(Icons.add),
-        //             hintText: 'Testing',
-        //           ),
-        //         ),
-        //         const SizedBox(
-        //           height: 43,
-        //         )
-        //       ],
-        //     ),
-        //   ),
-        // ),
       ),
     );
   }

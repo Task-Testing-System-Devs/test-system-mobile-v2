@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_system/src/features/auth/di/providers.dart';
 import 'package:test_system/src/features/auth/view/auth_page.dart';
 import 'package:test_system/src/features/contests/view/contests_page.dart';
 import 'package:test_system/src/features/profile/view/profile_page.dart';
@@ -14,7 +15,9 @@ final navigatorKeyProvider = Provider<GlobalKey<NavigatorState>>((ref) {
 
 final routerProvider = Provider<GoRouter>(
   (ref) {
-    const initialLocation = '/auth';
+    final token = ref.watch(authTokenProvider);
+
+    final initialLocation = token == null ? '/auth' : '/contests';
 
     final contestRoutes = [
       GoRoute(

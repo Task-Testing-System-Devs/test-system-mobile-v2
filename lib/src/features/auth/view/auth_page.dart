@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_system/src/features/auth/di/providers.dart';
 import 'package:test_system/src/shared/colors/colors.dart';
-import 'package:test_system/src/shared/routing/di/providers.dart';
 import 'package:test_system/src/shared/widgets/app_elevated_button.dart';
 import 'package:test_system/src/shared/widgets/app_text_field.dart';
 import 'package:test_system/src/shared/widgets/universal_asset_image.dart';
@@ -33,7 +33,7 @@ class AuthPage extends ConsumerWidget {
             const Text('Почта'),
             const SizedBox(height: 8),
             AppTextField(
-              controller: ref.watch(_emailTextController),
+              controller: ref.watch(_emailTextControllerProvider),
               leading: const Icon(Icons.email_outlined),
               hintText: 'Введите вашу почту',
             ),
@@ -41,7 +41,7 @@ class AuthPage extends ConsumerWidget {
             const Text('Пароль'),
             const SizedBox(height: 8),
             AppTextField(
-              controller: ref.watch(_passwordTextController),
+              controller: ref.watch(_passwordTextControllerProvider),
               leading: const Icon(Icons.key_outlined),
               isTextHidden: true,
               hintText: 'Пароль от 6 символов',
@@ -50,7 +50,11 @@ class AuthPage extends ConsumerWidget {
             AppElevatedButton(
               text: 'Авторизоваться',
               onPressed: () {
-                ref.read(navigationManagerProvider).go('/contests');
+                ref.read(authManagerProvider).auth(
+                      ref.read(_emailTextControllerProvider).text.trim(),
+                      ref.read(_passwordTextControllerProvider).text.trim(),
+                    );
+                // ref.read(navigationManagerProvider).go('/contests');
               },
             ),
             const SizedBox(height: 16),
@@ -68,10 +72,12 @@ class AuthPage extends ConsumerWidget {
   }
 }
 
-final _emailTextController = Provider.autoDispose<TextEditingController>(
+final _emailTextControllerProvider =
+    Provider.autoDispose<TextEditingController>(
   (ref) => TextEditingController(),
 );
 
-final _passwordTextController = Provider.autoDispose<TextEditingController>(
+final _passwordTextControllerProvider =
+    Provider.autoDispose<TextEditingController>(
   (ref) => TextEditingController(),
 );
