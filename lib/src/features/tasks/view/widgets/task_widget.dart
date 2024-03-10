@@ -1,117 +1,120 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_system/src/features/tasks/model/task.dart';
+import 'package:test_system/src/shared/routing/di/providers.dart';
 
 import '../../../../shared/assets/app_assets.dart';
 import '../../../../shared/colors/colors.dart';
-import '../../../../shared/enums/programming_language.dart';
 import '../../../../shared/widgets/complexity_widget.dart';
 import '../../../../shared/widgets/universal_asset_image.dart';
 
-class TaskWidget extends StatelessWidget {
+class TaskWidget extends ConsumerWidget {
   const TaskWidget({
     super.key,
-    required this.name,
-    required this.endDate,
-    required this.complexity,
-    required this.languages,
+    required this.contestId,
+    required this.task,
   });
 
-  final String name;
-  final DateTime endDate;
-  final Complexity complexity;
-  final List<ProgrammingLanguage> languages;
+  final String contestId;
+  final Task task;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: AppColors.card,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey[300]!,
-            offset: const Offset(0, 1),
-            blurRadius: 5,
+    return GestureDetector(
+      onTap: () => ref.read(navigationManagerProvider).go(
+            '/contests/$contestId/${task.id}',
           ),
-        ],
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        name,
-                        style: theme.textTheme.bodyLarge,
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Решить до ${endDate.day}.${endDate.month}.${endDate.year}',
-                        style: theme.textTheme.bodySmall?.copyWith(
-                          color: AppColors.textSecondary,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: AppColors.card,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[300]!,
+              offset: const Offset(0, 1),
+              blurRadius: 5,
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          task.name,
+                          style: theme.textTheme.bodyLarge,
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Сложность',
-                        style: theme.textTheme.bodyLarge,
-                      ),
-                      const SizedBox(height: 4),
-                      ComplexityWidget(
-                        complexity: complexity,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Языки',
-                        style: theme.textTheme.bodyLarge,
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: List.generate(
-                          3,
-                          (index) => index < languages.length
-                              ? Padding(
-                                  padding: const EdgeInsets.only(right: 8),
-                                  child: UniversalAssetImage(
-                                    languages.elementAt(index).asset,
-                                  ),
-                                )
-                              : const SizedBox(),
+                        const SizedBox(height: 4),
+                        Text(
+                          'Решить до ${task.endDate.day}.${task.endDate.month}.${task.endDate.year}',
+                          style: theme.textTheme.bodySmall?.copyWith(
+                            color: AppColors.textSecondary,
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(width: 24),
-              Image.asset(AppBanners.assetContest),
-            ],
-          ),
-          // const SizedBox(height: 24),
-          // AppElevatedButton(
-          //   buttonSize: ButtonSize.medium,
-          //   text: 'Решить',
-          //   onPressed: () {},
-          // )
-        ],
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Сложность',
+                          style: theme.textTheme.bodyLarge,
+                        ),
+                        const SizedBox(height: 4),
+                        ComplexityWidget(
+                          complexity: task.complexity,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Языки',
+                          style: theme.textTheme.bodyLarge,
+                        ),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: List.generate(
+                            3,
+                            (index) => index < task.languages.length
+                                ? Padding(
+                                    padding: const EdgeInsets.only(right: 8),
+                                    child: UniversalAssetImage(
+                                      task.languages.elementAt(index).asset,
+                                    ),
+                                  )
+                                : const SizedBox(),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(width: 24),
+                Image.asset(AppBanners.assetContest),
+              ],
+            ),
+            // const SizedBox(height: 24),
+            // AppElevatedButton(
+            //   buttonSize: ButtonSize.medium,
+            //   text: 'Решить',
+            //   onPressed: () {},
+            // )
+          ],
+        ),
       ),
     );
   }
