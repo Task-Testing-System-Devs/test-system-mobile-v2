@@ -51,7 +51,7 @@ class TaskWidget extends ConsumerWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          task.name,
+                          task.title,
                           style: theme.textTheme.bodyLarge,
                         ),
                         const SizedBox(height: 4),

@@ -6,6 +6,8 @@ import 'package:test_system/src/shared/routing/go_router.dart';
 import 'package:test_system/src/shared/theme/color_scheme.dart';
 import 'package:test_system/src/shared/theme/text_theme.dart';
 
+import 'src/shared/colors/colors.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -33,6 +35,9 @@ class MyApp extends ConsumerWidget {
         theme: ThemeData(
           textTheme: AppTextTheme.light,
           colorScheme: AppColorScheme.light,
+          appBarTheme: const AppBarTheme(
+            surfaceTintColor: AppColors.card,
+          ),
         ),
         routerConfig: router,
       ),

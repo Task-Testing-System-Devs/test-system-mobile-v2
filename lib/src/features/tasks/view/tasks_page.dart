@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_system/src/features/tasks/model/task.dart';
+import 'package:test_system/src/features/tasks/model/test.dart';
 import 'package:test_system/src/features/tasks/view/widgets/task_widget.dart';
 import 'package:test_system/src/shared/widgets/complexity_widget.dart';
 
@@ -15,6 +16,12 @@ class TasksPage extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Решайте задачи',
+          style: theme.textTheme.headlineMedium,
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -22,11 +29,6 @@ class TasksPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'Продвигайтесь по рейтингу, решая задачи',
-                  style: theme.textTheme.headlineLarge,
-                ),
-                const SizedBox(height: 16),
                 for (int i = 0; i < 20; ++i)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
@@ -34,7 +36,11 @@ class TasksPage extends StatelessWidget {
                       contestId: contestId,
                       task: Task(
                         id: '1',
-                        name: 'Test task',
+                        title: 'Test task',
+                        description: 'Вы решаете ебучую поебень!',
+                        examples: [
+                          const Test(input: '1 2', output: '3'),
+                        ],
                         endDate: DateTime.now()..add(const Duration(days: 5)),
                         languages: <ProgrammingLanguage>[
                           ProgrammingLanguage.java

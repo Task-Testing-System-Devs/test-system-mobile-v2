@@ -3,17 +3,18 @@ import 'package:test_system/src/shared/assets/app_assets.dart';
 typedef LangIcons = ProgrammingLanguageIcons;
 
 enum ProgrammingLanguage {
-  c(LangIcons.c),
-  cPlusPlus(LangIcons.cPlusPlus),
-  cSharp(LangIcons.cSharp),
-  dart(LangIcons.dart),
-  java(LangIcons.java),
-  kotlin(LangIcons.kotlin),
-  python(LangIcons.python),
-  ruby(LangIcons.ruby),
-  swift(LangIcons.swift);
+  c(LangIcons.c, 'C'),
+  cPlusPlus(LangIcons.cPlusPlus, 'C++'),
+  cSharp(LangIcons.cSharp, 'C#'),
+  dart(LangIcons.dart, 'Dart'),
+  java(LangIcons.java, 'Java'),
+  kotlin(LangIcons.kotlin, 'Kotlin'),
+  python(LangIcons.python, 'Python 3'),
+  ruby(LangIcons.ruby, 'Ruby'),
+  swift(LangIcons.swift, 'Swift');
 
   final String asset;
+  final String name;
 
-  const ProgrammingLanguage(this.asset);
+  const ProgrammingLanguage(this.asset, this.name);
 }
