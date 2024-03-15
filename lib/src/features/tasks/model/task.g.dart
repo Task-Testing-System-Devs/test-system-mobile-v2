@@ -6,53 +6,55 @@ part of 'task.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
-      id: json['id'] as String,
-      endDate: DateTime.parse(json['endDate'] as String),
-      complexity: $enumDecode(_$ComplexityEnumMap, json['complexity']),
-      languages: (json['languages'] as List<dynamic>)
-          .map((e) => $enumDecode(_$ProgrammingLanguageEnumMap, e))
-          .toList(),
+Task _$TaskFromJson(Map<String, dynamic> json) => Task(
+      id: json['id'] as int,
+      ejudgeId: json['ejudge_id'] as int,
       title: json['title'] as String,
       description: json['description'] as String,
+      finishTime: json['finish_time'] == null
+          ? null
+          : DateTime.parse(json['finish_time'] as String),
       examples: (json['examples'] as List<dynamic>?)
           ?.map((e) => Test.fromJson(e as Map<String, dynamic>))
           .toList(),
-      maxTime: (json['maxTime'] as num?)?.toDouble(),
-      maxMemory: (json['maxMemory'] as num?)?.toDouble(),
+      timeLimit: (json['time_limit'] as num?)?.toDouble(),
+      memoryLimit: (json['memory_limit'] as num?)?.toDouble(),
+    );
+
+Map<String, dynamic> _$TaskToJson(Task instance) => <String, dynamic>{
+      'id': instance.id,
+      'ejudge_id': instance.ejudgeId,
+      'title': instance.title,
+      'description': instance.description,
+      'finish_time': instance.finishTime?.toIso8601String(),
+      'examples': instance.examples,
+      'time_limit': instance.timeLimit,
+      'memory_limit': instance.memoryLimit,
+    };
+
+_$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
+      id: json['id'] as int,
+      ejudgeId: json['ejudgeId'] as int,
+      title: json['title'] as String,
+      description: json['description'] as String,
+      finishTime: json['finishTime'] == null
+          ? null
+          : DateTime.parse(json['finishTime'] as String),
+      examples: (json['examples'] as List<dynamic>?)
+          ?.map((e) => Test.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      timeLimit: (json['timeLimit'] as num?)?.toDouble(),
+      memoryLimit: (json['memoryLimit'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'endDate': instance.endDate.toIso8601String(),
-      'complexity': _$ComplexityEnumMap[instance.complexity]!,
-      'languages': instance.languages
-          .map((e) => _$ProgrammingLanguageEnumMap[e]!)
-          .toList(),
+      'ejudgeId': instance.ejudgeId,
       'title': instance.title,
       'description': instance.description,
+      'finishTime': instance.finishTime?.toIso8601String(),
       'examples': instance.examples,
-      'maxTime': instance.maxTime,
-      'maxMemory': instance.maxMemory,
+      'timeLimit': instance.timeLimit,
+      'memoryLimit': instance.memoryLimit,
     };
-
-const _$ComplexityEnumMap = {
-  Complexity.veryEasy: 'veryEasy',
-  Complexity.easy: 'easy',
-  Complexity.medium: 'medium',
-  Complexity.hard: 'hard',
-  Complexity.veryHard: 'veryHard',
-};
-
-const _$ProgrammingLanguageEnumMap = {
-  ProgrammingLanguage.c: 'c',
-  ProgrammingLanguage.cPlusPlus: 'cPlusPlus',
-  ProgrammingLanguage.cSharp: 'cSharp',
-  ProgrammingLanguage.dart: 'dart',
-  ProgrammingLanguage.java: 'java',
-  ProgrammingLanguage.kotlin: 'kotlin',
-  ProgrammingLanguage.python: 'python',
-  ProgrammingLanguage.ruby: 'ruby',
-  ProgrammingLanguage.swift: 'swift',
-};

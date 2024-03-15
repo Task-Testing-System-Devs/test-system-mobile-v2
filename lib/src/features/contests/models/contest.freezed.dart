@@ -14,17 +14,21 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Contest _$ContestFromJson(Map<String, dynamic> json) {
-  return _Contest.fromJson(json);
-}
 
 /// @nodoc
 mixin _$Contest {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  int get ejudgeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'title')
   String get name => throw _privateConstructorUsedError;
-  DateTime get endDate => throw _privateConstructorUsedError;
+  @JsonKey(toJson: _dateTimeToJson, fromJson: DateTime.parse)
+  DateTime get finishTime => throw _privateConstructorUsedError;
+  @JsonKey(name: 'difficulty', fromJson: Complexity.fromNumber)
   Complexity get complexity => throw _privateConstructorUsedError;
-  List<ProgrammingLanguage> get languages => throw _privateConstructorUsedError;
+  DateTime? get startTime => throw _privateConstructorUsedError;
+  List<ProgrammingLanguage>? get languages =>
+      throw _privateConstructorUsedError;
+  List<Task>? get tasks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,11 +41,16 @@ abstract class $ContestCopyWith<$Res> {
       _$ContestCopyWithImpl<$Res, Contest>;
   @useResult
   $Res call(
-      {String id,
-      String name,
-      DateTime endDate,
+      {int id,
+      int ejudgeId,
+      @JsonKey(name: 'title') String name,
+      @JsonKey(toJson: _dateTimeToJson, fromJson: DateTime.parse)
+      DateTime finishTime,
+      @JsonKey(name: 'difficulty', fromJson: Complexity.fromNumber)
       Complexity complexity,
-      List<ProgrammingLanguage> languages});
+      DateTime? startTime,
+      List<ProgrammingLanguage>? languages,
+      List<Task>? tasks});
 }
 
 /// @nodoc
@@ -58,32 +67,47 @@ class _$ContestCopyWithImpl<$Res, $Val extends Contest>
   @override
   $Res call({
     Object? id = null,
+    Object? ejudgeId = null,
     Object? name = null,
-    Object? endDate = null,
+    Object? finishTime = null,
     Object? complexity = null,
-    Object? languages = null,
+    Object? startTime = freezed,
+    Object? languages = freezed,
+    Object? tasks = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
+      ejudgeId: null == ejudgeId
+          ? _value.ejudgeId
+          : ejudgeId // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      endDate: null == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
+      finishTime: null == finishTime
+          ? _value.finishTime
+          : finishTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
       complexity: null == complexity
           ? _value.complexity
           : complexity // ignore: cast_nullable_to_non_nullable
               as Complexity,
-      languages: null == languages
+      startTime: freezed == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      languages: freezed == languages
           ? _value.languages
           : languages // ignore: cast_nullable_to_non_nullable
-              as List<ProgrammingLanguage>,
+              as List<ProgrammingLanguage>?,
+      tasks: freezed == tasks
+          ? _value.tasks
+          : tasks // ignore: cast_nullable_to_non_nullable
+              as List<Task>?,
     ) as $Val);
   }
 }
@@ -96,11 +120,16 @@ abstract class _$$ContestImplCopyWith<$Res> implements $ContestCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      String name,
-      DateTime endDate,
+      {int id,
+      int ejudgeId,
+      @JsonKey(name: 'title') String name,
+      @JsonKey(toJson: _dateTimeToJson, fromJson: DateTime.parse)
+      DateTime finishTime,
+      @JsonKey(name: 'difficulty', fromJson: Complexity.fromNumber)
       Complexity complexity,
-      List<ProgrammingLanguage> languages});
+      DateTime? startTime,
+      List<ProgrammingLanguage>? languages,
+      List<Task>? tasks});
 }
 
 /// @nodoc
@@ -115,32 +144,47 @@ class __$$ContestImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? ejudgeId = null,
     Object? name = null,
-    Object? endDate = null,
+    Object? finishTime = null,
     Object? complexity = null,
-    Object? languages = null,
+    Object? startTime = freezed,
+    Object? languages = freezed,
+    Object? tasks = freezed,
   }) {
     return _then(_$ContestImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
+      ejudgeId: null == ejudgeId
+          ? _value.ejudgeId
+          : ejudgeId // ignore: cast_nullable_to_non_nullable
+              as int,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      endDate: null == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
+      finishTime: null == finishTime
+          ? _value.finishTime
+          : finishTime // ignore: cast_nullable_to_non_nullable
               as DateTime,
       complexity: null == complexity
           ? _value.complexity
           : complexity // ignore: cast_nullable_to_non_nullable
               as Complexity,
-      languages: null == languages
+      startTime: freezed == startTime
+          ? _value.startTime
+          : startTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      languages: freezed == languages
           ? _value._languages
           : languages // ignore: cast_nullable_to_non_nullable
-              as List<ProgrammingLanguage>,
+              as List<ProgrammingLanguage>?,
+      tasks: freezed == tasks
+          ? _value._tasks
+          : tasks // ignore: cast_nullable_to_non_nullable
+              as List<Task>?,
     ));
   }
 }
@@ -150,34 +194,59 @@ class __$$ContestImplCopyWithImpl<$Res>
 class _$ContestImpl implements _Contest {
   const _$ContestImpl(
       {required this.id,
-      required this.name,
-      required this.endDate,
+      required this.ejudgeId,
+      @JsonKey(name: 'title') required this.name,
+      @JsonKey(toJson: _dateTimeToJson, fromJson: DateTime.parse)
+      required this.finishTime,
+      @JsonKey(name: 'difficulty', fromJson: Complexity.fromNumber)
       required this.complexity,
-      required final List<ProgrammingLanguage> languages})
-      : _languages = languages;
+      this.startTime,
+      final List<ProgrammingLanguage>? languages,
+      final List<Task>? tasks})
+      : _languages = languages,
+        _tasks = tasks;
 
   factory _$ContestImpl.fromJson(Map<String, dynamic> json) =>
       _$$ContestImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
+  final int ejudgeId;
+  @override
+  @JsonKey(name: 'title')
   final String name;
   @override
-  final DateTime endDate;
+  @JsonKey(toJson: _dateTimeToJson, fromJson: DateTime.parse)
+  final DateTime finishTime;
   @override
+  @JsonKey(name: 'difficulty', fromJson: Complexity.fromNumber)
   final Complexity complexity;
-  final List<ProgrammingLanguage> _languages;
   @override
-  List<ProgrammingLanguage> get languages {
+  final DateTime? startTime;
+  final List<ProgrammingLanguage>? _languages;
+  @override
+  List<ProgrammingLanguage>? get languages {
+    final value = _languages;
+    if (value == null) return null;
     if (_languages is EqualUnmodifiableListView) return _languages;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_languages);
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<Task>? _tasks;
+  @override
+  List<Task>? get tasks {
+    final value = _tasks;
+    if (value == null) return null;
+    if (_tasks is EqualUnmodifiableListView) return _tasks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'Contest(id: $id, name: $name, endDate: $endDate, complexity: $complexity, languages: $languages)';
+    return 'Contest(id: $id, ejudgeId: $ejudgeId, name: $name, finishTime: $finishTime, complexity: $complexity, startTime: $startTime, languages: $languages, tasks: $tasks)';
   }
 
   @override
@@ -186,18 +255,32 @@ class _$ContestImpl implements _Contest {
         (other.runtimeType == runtimeType &&
             other is _$ContestImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.ejudgeId, ejudgeId) ||
+                other.ejudgeId == ejudgeId) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
+            (identical(other.finishTime, finishTime) ||
+                other.finishTime == finishTime) &&
             (identical(other.complexity, complexity) ||
                 other.complexity == complexity) &&
+            (identical(other.startTime, startTime) ||
+                other.startTime == startTime) &&
             const DeepCollectionEquality()
-                .equals(other._languages, _languages));
+                .equals(other._languages, _languages) &&
+            const DeepCollectionEquality().equals(other._tasks, _tasks));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, endDate, complexity,
-      const DeepCollectionEquality().hash(_languages));
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      ejudgeId,
+      name,
+      finishTime,
+      complexity,
+      startTime,
+      const DeepCollectionEquality().hash(_languages),
+      const DeepCollectionEquality().hash(_tasks));
 
   @JsonKey(ignore: true)
   @override
@@ -215,24 +298,38 @@ class _$ContestImpl implements _Contest {
 
 abstract class _Contest implements Contest {
   const factory _Contest(
-      {required final String id,
-      required final String name,
-      required final DateTime endDate,
+      {required final int id,
+      required final int ejudgeId,
+      @JsonKey(name: 'title') required final String name,
+      @JsonKey(toJson: _dateTimeToJson, fromJson: DateTime.parse)
+      required final DateTime finishTime,
+      @JsonKey(name: 'difficulty', fromJson: Complexity.fromNumber)
       required final Complexity complexity,
-      required final List<ProgrammingLanguage> languages}) = _$ContestImpl;
+      final DateTime? startTime,
+      final List<ProgrammingLanguage>? languages,
+      final List<Task>? tasks}) = _$ContestImpl;
 
   factory _Contest.fromJson(Map<String, dynamic> json) = _$ContestImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
+  int get ejudgeId;
+  @override
+  @JsonKey(name: 'title')
   String get name;
   @override
-  DateTime get endDate;
+  @JsonKey(toJson: _dateTimeToJson, fromJson: DateTime.parse)
+  DateTime get finishTime;
   @override
+  @JsonKey(name: 'difficulty', fromJson: Complexity.fromNumber)
   Complexity get complexity;
   @override
-  List<ProgrammingLanguage> get languages;
+  DateTime? get startTime;
+  @override
+  List<ProgrammingLanguage>? get languages;
+  @override
+  List<Task>? get tasks;
   @override
   @JsonKey(ignore: true)
   _$$ContestImplCopyWith<_$ContestImpl> get copyWith =>

@@ -1,44 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_system/src/features/contests/di/providers.dart';
 import 'package:test_system/src/features/tasks/view/widgets/test_example_widget.dart';
 import 'package:test_system/src/shared/colors/colors.dart';
 import 'package:test_system/src/shared/widgets/app_elevated_button.dart';
 import 'package:test_system/src/shared/widgets/text_info_widget.dart';
 
 import '../../../shared/enums/programming_language.dart';
-import '../../../shared/widgets/complexity_widget.dart';
-import '../model/task.dart';
-import '../model/test.dart';
 
 class TaskPage extends ConsumerStatefulWidget {
-  const TaskPage({super.key, required this.taskId});
+  const TaskPage({super.key, required this.contestId, required this.taskId});
 
-  final String taskId;
+  final int contestId;
+  final int taskId;
 
   @override
   ConsumerState<TaskPage> createState() => _TaskPageState();
 }
 
 class _TaskPageState extends ConsumerState<TaskPage> {
-  final task = Task(
-    id: '1',
-    title: 'Test task',
-    description:
-        'Вы решаете самую простую задачу. Решите её наконец-то, и давайте уже расстанемся мирно.',
-    examples: [
-      const Test(input: '1 2', output: '3'),
-      const Test(input: '1 2', output: '3'),
-      const Test(input: '1 2', output: '3'),
-    ],
-    endDate: DateTime.now()..add(const Duration(days: 5)),
-    languages: <ProgrammingLanguage>[ProgrammingLanguage.java],
-    complexity: Complexity.hard,
-    maxTime: 5.3,
-    maxMemory: 2,
-  );
-
   @override
   Widget build(BuildContext context) {
+    final contest = ref.watch(contestProvider(widget.contestId));
+
+    if (contest.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    final contestValue = contest.value;
+    final task = contestValue!.tasks
+        ?.where((element) => element.id == widget.taskId)
+        .first;
+
+    if (task == null) {
+      return const Center(child: Text('Задача не обнаружена'));
+    }
+
     final theme = Theme.of(context);
 
     return Scaffold(
@@ -66,18 +63,18 @@ class _TaskPageState extends ConsumerState<TaskPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (task.maxTime != null)
+                  if (task.timeLimit != null)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 8),
                       child: TextInfoWidget(
                         primary: 'Ограничение по времени',
-                        secondary: '${task.maxTime} с',
+                        secondary: '${task.timeLimit} с',
                       ),
                     ),
-                  if (task.maxMemory != null)
+                  if (task.memoryLimit != null)
                     TextInfoWidget(
                       primary: 'Ограничение по памяти',
-                      secondary: '${task.maxMemory} МБ',
+                      secondary: '${task.memoryLimit} МБ',
                     ),
                 ],
               ),

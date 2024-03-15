@@ -6,7 +6,24 @@ enum Complexity {
   easy,
   medium,
   hard,
-  veryHard,
+  veryHard;
+
+  static Complexity fromNumber(int number) {
+    switch (number) {
+      case 1:
+        return Complexity.veryEasy;
+      case 2:
+        return Complexity.easy;
+      case 3:
+        return Complexity.medium;
+      case 4:
+        return Complexity.hard;
+      case 5:
+        return Complexity.veryHard;
+      default:
+        return Complexity.medium;
+    }
+  }
 }
 
 class ComplexityWidget extends StatelessWidget {

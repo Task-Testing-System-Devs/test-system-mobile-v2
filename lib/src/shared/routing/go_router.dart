@@ -30,15 +30,18 @@ final routerProvider = Provider<GoRouter>(
           GoRoute(
             path: ':contest_id',
             builder: (context, state) {
-              final contestId = state.pathParameters['contest_id']!;
+              final contestId = int.parse(state.pathParameters['contest_id']!);
               return TasksPage(contestId: contestId);
             },
             routes: [
               GoRoute(
                 path: ':task_id',
                 builder: (context, state) {
-                  final taskId = state.pathParameters['task_id']!;
-                  return TaskPage(taskId: taskId);
+                  final contestId = int.parse(
+                    state.pathParameters['contest_id']!,
+                  );
+                  final taskId = int.parse(state.pathParameters['task_id']!);
+                  return TaskPage(contestId: contestId, taskId: taskId);
                 },
               ),
             ],

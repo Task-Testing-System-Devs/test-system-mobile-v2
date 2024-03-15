@@ -15,7 +15,7 @@ class TaskWidget extends ConsumerWidget {
     required this.task,
   });
 
-  final String contestId;
+  final int contestId;
   final Task task;
 
   @override
@@ -56,7 +56,7 @@ class TaskWidget extends ConsumerWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Решить до ${task.endDate.day}.${task.endDate.month}.${task.endDate.year}',
+                          'Решить до ${task.finishTime?.day}.${task.finishTime?.month}.${task.finishTime?.year}',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: AppColors.textSecondary,
                           ),
@@ -64,43 +64,43 @@ class TaskWidget extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Сложность',
-                          style: theme.textTheme.bodyLarge,
-                        ),
-                        const SizedBox(height: 4),
-                        ComplexityWidget(
-                          complexity: task.complexity,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Языки',
-                          style: theme.textTheme.bodyLarge,
-                        ),
-                        const SizedBox(height: 4),
-                        Row(
-                          children: List.generate(
-                            3,
-                            (index) => index < task.languages.length
-                                ? Padding(
-                                    padding: const EdgeInsets.only(right: 8),
-                                    child: UniversalAssetImage(
-                                      task.languages.elementAt(index).asset,
-                                    ),
-                                  )
-                                : const SizedBox(),
-                          ),
-                        )
-                      ],
-                    ),
+                    // Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: <Widget>[
+                    //     Text(
+                    //       'Сложность',
+                    //       style: theme.textTheme.bodyLarge,
+                    //     ),
+                    //     const SizedBox(height: 4),
+                    //     ComplexityWidget(
+                    //       complexity: task.complexity,
+                    //     ),
+                    //   ],
+                    // ),
+                    // const SizedBox(height: 8),
+                    // Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.start,
+                    //   children: <Widget>[
+                    //     Text(
+                    //       'Языки',
+                    //       style: theme.textTheme.bodyLarge,
+                    //     ),
+                    //     const SizedBox(height: 4),
+                    //     Row(
+                    //       children: List.generate(
+                    //         3,
+                    //         (index) => index < task.languages.length
+                    //             ? Padding(
+                    //                 padding: const EdgeInsets.only(right: 8),
+                    //                 child: UniversalAssetImage(
+                    //                   task.languages.elementAt(index).asset,
+                    //                 ),
+                    //               )
+                    //             : const SizedBox(),
+                    //       ),
+                    //     )
+                    //   ],
+                    // ),
                   ],
                 ),
                 const SizedBox(width: 24),

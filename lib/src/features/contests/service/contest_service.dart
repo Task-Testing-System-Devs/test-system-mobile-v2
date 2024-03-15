@@ -3,7 +3,9 @@ import 'package:test_system/src/features/submissions/model/submission.dart';
 import 'package:test_system/src/features/tasks/model/task.dart';
 
 abstract class ContestService {
-  Future<Contest> getContest(String contestId);
+  Future<List<Contest>> getContests();
+
+  Future<Contest> getContest(int contestId);
 
   Future<Task> getTask(String contestId, String taskId);
 

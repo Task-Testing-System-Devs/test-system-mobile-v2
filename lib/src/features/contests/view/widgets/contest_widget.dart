@@ -22,7 +22,7 @@ class ContestWidget extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () => ref.read(navigationManagerProvider).go(
-            '/contests/contest/${contest.id}',
+            '/contests/${contest.id}',
           ),
       child: Container(
         decoration: BoxDecoration(
@@ -54,7 +54,7 @@ class ContestWidget extends ConsumerWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Решить до ${contest.endDate.day}.${contest.endDate.month}.${contest.endDate.year}',
+                          'Решить до ${contest.finishTime.day}.${contest.finishTime.month}.${contest.finishTime.year}',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: AppColors.textSecondary,
                           ),
@@ -74,29 +74,32 @@ class ContestWidget extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 8),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          'Языки',
-                          style: theme.textTheme.bodyLarge,
-                        ),
-                        const SizedBox(height: 4),
-                        Row(
-                          children: List.generate(
-                            3,
-                            (index) => index < contest.languages.length
-                                ? Padding(
-                                    padding: const EdgeInsets.only(right: 8),
-                                    child: UniversalAssetImage(
-                                      contest.languages.elementAt(index).asset,
-                                    ),
-                                  )
-                                : const SizedBox(),
+                    if (contest.languages != null)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(
+                            'Языки',
+                            style: theme.textTheme.bodyLarge,
                           ),
-                        )
-                      ],
-                    ),
+                          const SizedBox(height: 4),
+                          Row(
+                            children: List.generate(
+                              3,
+                              (index) => index < contest.languages!.length
+                                  ? Padding(
+                                      padding: const EdgeInsets.only(right: 8),
+                                      child: UniversalAssetImage(
+                                        contest.languages!
+                                            .elementAt(index)
+                                            .asset,
+                                      ),
+                                    )
+                                  : const SizedBox(),
+                            ),
+                          )
+                        ],
+                      ),
                   ],
                 ),
                 const SizedBox(width: 24),

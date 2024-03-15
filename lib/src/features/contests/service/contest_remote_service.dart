@@ -7,19 +7,49 @@ import 'package:test_system/src/features/tasks/model/task.dart';
 
 class ContestRemoteService extends ContestService {
   final Dio _dio;
+  final Dio _ejudgeDio;
 
-  ContestRemoteService(this._dio);
+  ContestRemoteService(this._dio, this._ejudgeDio);
 
   static const _ejudgePath = '/api/master';
+  static const _contestPath = '/api/contest';
 
   @override
-  Future<Contest> getContest(String contestId) async {
+  Future<List<Contest>> getContests() async {
     try {
       final response = await _dio.get(
-        '$_ejudgePath/contest-status-json',
+        '$_contestPath/get-all',
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWFjaGVyQGhzZS5ydSIsImlhdCI6MTcxMDUwOTU2MSwiZXhwIjoxNzExMTE0MzYxfQ.Vn7OKtDuJZ33eZysjKFh9Wx3GRwhc9zl0IoZzJGX4UQ'
+          },
+        ),
+      );
+      return Contest.listFromJson(response.data as List<dynamic>);
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 400) {
+        return <Contest>[];
+      }
+      debugPrint('${e.response?.requestOptions.path} $e');
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Contest> getContest(int contestId) async {
+    try {
+      final response = await _dio.get(
+        '$_contestPath/info',
         queryParameters: {
-          'contest_id': contestId,
+          'id': contestId,
         },
+        options: Options(
+          headers: {
+            'Authorization':
+                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWFjaGVyQGhzZS5ydSIsImlhdCI6MTcxMDUwOTU2MSwiZXhwIjoxNzExMTE0MzYxfQ.Vn7OKtDuJZ33eZysjKFh9Wx3GRwhc9zl0IoZzJGX4UQ'
+          },
+        ),
       );
       return Contest.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {

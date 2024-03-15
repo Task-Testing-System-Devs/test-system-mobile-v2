@@ -14,21 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Task _$TaskFromJson(Map<String, dynamic> json) {
-  return _Task.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Task {
-  String get id => throw _privateConstructorUsedError;
-  DateTime get endDate => throw _privateConstructorUsedError;
-  Complexity get complexity => throw _privateConstructorUsedError;
-  List<ProgrammingLanguage> get languages => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
+  int get ejudgeId =>
+      throw _privateConstructorUsedError; // required Complexity complexity,
+// required List<ProgrammingLanguage> languages,
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  DateTime? get finishTime => throw _privateConstructorUsedError;
   List<Test>? get examples => throw _privateConstructorUsedError;
-  double? get maxTime => throw _privateConstructorUsedError;
-  double? get maxMemory => throw _privateConstructorUsedError;
+  double? get timeLimit => throw _privateConstructorUsedError;
+  double? get memoryLimit => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -41,15 +38,14 @@ abstract class $TaskCopyWith<$Res> {
       _$TaskCopyWithImpl<$Res, Task>;
   @useResult
   $Res call(
-      {String id,
-      DateTime endDate,
-      Complexity complexity,
-      List<ProgrammingLanguage> languages,
+      {int id,
+      int ejudgeId,
       String title,
       String description,
+      DateTime? finishTime,
       List<Test>? examples,
-      double? maxTime,
-      double? maxMemory});
+      double? timeLimit,
+      double? memoryLimit});
 }
 
 /// @nodoc
@@ -66,32 +62,23 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
   @override
   $Res call({
     Object? id = null,
-    Object? endDate = null,
-    Object? complexity = null,
-    Object? languages = null,
+    Object? ejudgeId = null,
     Object? title = null,
     Object? description = null,
+    Object? finishTime = freezed,
     Object? examples = freezed,
-    Object? maxTime = freezed,
-    Object? maxMemory = freezed,
+    Object? timeLimit = freezed,
+    Object? memoryLimit = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      endDate: null == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      complexity: null == complexity
-          ? _value.complexity
-          : complexity // ignore: cast_nullable_to_non_nullable
-              as Complexity,
-      languages: null == languages
-          ? _value.languages
-          : languages // ignore: cast_nullable_to_non_nullable
-              as List<ProgrammingLanguage>,
+              as int,
+      ejudgeId: null == ejudgeId
+          ? _value.ejudgeId
+          : ejudgeId // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -100,17 +87,21 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      finishTime: freezed == finishTime
+          ? _value.finishTime
+          : finishTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       examples: freezed == examples
           ? _value.examples
           : examples // ignore: cast_nullable_to_non_nullable
               as List<Test>?,
-      maxTime: freezed == maxTime
-          ? _value.maxTime
-          : maxTime // ignore: cast_nullable_to_non_nullable
+      timeLimit: freezed == timeLimit
+          ? _value.timeLimit
+          : timeLimit // ignore: cast_nullable_to_non_nullable
               as double?,
-      maxMemory: freezed == maxMemory
-          ? _value.maxMemory
-          : maxMemory // ignore: cast_nullable_to_non_nullable
+      memoryLimit: freezed == memoryLimit
+          ? _value.memoryLimit
+          : memoryLimit // ignore: cast_nullable_to_non_nullable
               as double?,
     ) as $Val);
   }
@@ -124,15 +115,14 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String id,
-      DateTime endDate,
-      Complexity complexity,
-      List<ProgrammingLanguage> languages,
+      {int id,
+      int ejudgeId,
       String title,
       String description,
+      DateTime? finishTime,
       List<Test>? examples,
-      double? maxTime,
-      double? maxMemory});
+      double? timeLimit,
+      double? memoryLimit});
 }
 
 /// @nodoc
@@ -146,32 +136,23 @@ class __$$TaskImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? endDate = null,
-    Object? complexity = null,
-    Object? languages = null,
+    Object? ejudgeId = null,
     Object? title = null,
     Object? description = null,
+    Object? finishTime = freezed,
     Object? examples = freezed,
-    Object? maxTime = freezed,
-    Object? maxMemory = freezed,
+    Object? timeLimit = freezed,
+    Object? memoryLimit = freezed,
   }) {
     return _then(_$TaskImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      endDate: null == endDate
-          ? _value.endDate
-          : endDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      complexity: null == complexity
-          ? _value.complexity
-          : complexity // ignore: cast_nullable_to_non_nullable
-              as Complexity,
-      languages: null == languages
-          ? _value._languages
-          : languages // ignore: cast_nullable_to_non_nullable
-              as List<ProgrammingLanguage>,
+              as int,
+      ejudgeId: null == ejudgeId
+          ? _value.ejudgeId
+          : ejudgeId // ignore: cast_nullable_to_non_nullable
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -180,17 +161,21 @@ class __$$TaskImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      finishTime: freezed == finishTime
+          ? _value.finishTime
+          : finishTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       examples: freezed == examples
           ? _value._examples
           : examples // ignore: cast_nullable_to_non_nullable
               as List<Test>?,
-      maxTime: freezed == maxTime
-          ? _value.maxTime
-          : maxTime // ignore: cast_nullable_to_non_nullable
+      timeLimit: freezed == timeLimit
+          ? _value.timeLimit
+          : timeLimit // ignore: cast_nullable_to_non_nullable
               as double?,
-      maxMemory: freezed == maxMemory
-          ? _value.maxMemory
-          : maxMemory // ignore: cast_nullable_to_non_nullable
+      memoryLimit: freezed == memoryLimit
+          ? _value.memoryLimit
+          : memoryLimit // ignore: cast_nullable_to_non_nullable
               as double?,
     ));
   }
@@ -201,38 +186,30 @@ class __$$TaskImplCopyWithImpl<$Res>
 class _$TaskImpl implements _Task {
   const _$TaskImpl(
       {required this.id,
-      required this.endDate,
-      required this.complexity,
-      required final List<ProgrammingLanguage> languages,
+      required this.ejudgeId,
       required this.title,
       required this.description,
+      this.finishTime,
       final List<Test>? examples,
-      this.maxTime,
-      this.maxMemory})
-      : _languages = languages,
-        _examples = examples;
+      this.timeLimit,
+      this.memoryLimit})
+      : _examples = examples;
 
   factory _$TaskImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
-  final DateTime endDate;
-  @override
-  final Complexity complexity;
-  final List<ProgrammingLanguage> _languages;
-  @override
-  List<ProgrammingLanguage> get languages {
-    if (_languages is EqualUnmodifiableListView) return _languages;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_languages);
-  }
-
+  final int ejudgeId;
+// required Complexity complexity,
+// required List<ProgrammingLanguage> languages,
   @override
   final String title;
   @override
   final String description;
+  @override
+  final DateTime? finishTime;
   final List<Test>? _examples;
   @override
   List<Test>? get examples {
@@ -244,13 +221,13 @@ class _$TaskImpl implements _Task {
   }
 
   @override
-  final double? maxTime;
+  final double? timeLimit;
   @override
-  final double? maxMemory;
+  final double? memoryLimit;
 
   @override
   String toString() {
-    return 'Task(id: $id, endDate: $endDate, complexity: $complexity, languages: $languages, title: $title, description: $description, examples: $examples, maxTime: $maxTime, maxMemory: $maxMemory)';
+    return 'Task(id: $id, ejudgeId: $ejudgeId, title: $title, description: $description, finishTime: $finishTime, examples: $examples, timeLimit: $timeLimit, memoryLimit: $memoryLimit)';
   }
 
   @override
@@ -259,18 +236,18 @@ class _$TaskImpl implements _Task {
         (other.runtimeType == runtimeType &&
             other is _$TaskImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.endDate, endDate) || other.endDate == endDate) &&
-            (identical(other.complexity, complexity) ||
-                other.complexity == complexity) &&
-            const DeepCollectionEquality()
-                .equals(other._languages, _languages) &&
+            (identical(other.ejudgeId, ejudgeId) ||
+                other.ejudgeId == ejudgeId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
+            (identical(other.finishTime, finishTime) ||
+                other.finishTime == finishTime) &&
             const DeepCollectionEquality().equals(other._examples, _examples) &&
-            (identical(other.maxTime, maxTime) || other.maxTime == maxTime) &&
-            (identical(other.maxMemory, maxMemory) ||
-                other.maxMemory == maxMemory));
+            (identical(other.timeLimit, timeLimit) ||
+                other.timeLimit == timeLimit) &&
+            (identical(other.memoryLimit, memoryLimit) ||
+                other.memoryLimit == memoryLimit));
   }
 
   @JsonKey(ignore: true)
@@ -278,14 +255,13 @@ class _$TaskImpl implements _Task {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      endDate,
-      complexity,
-      const DeepCollectionEquality().hash(_languages),
+      ejudgeId,
       title,
       description,
+      finishTime,
       const DeepCollectionEquality().hash(_examples),
-      maxTime,
-      maxMemory);
+      timeLimit,
+      memoryLimit);
 
   @JsonKey(ignore: true)
   @override
@@ -303,36 +279,34 @@ class _$TaskImpl implements _Task {
 
 abstract class _Task implements Task {
   const factory _Task(
-      {required final String id,
-      required final DateTime endDate,
-      required final Complexity complexity,
-      required final List<ProgrammingLanguage> languages,
+      {required final int id,
+      required final int ejudgeId,
       required final String title,
       required final String description,
+      final DateTime? finishTime,
       final List<Test>? examples,
-      final double? maxTime,
-      final double? maxMemory}) = _$TaskImpl;
+      final double? timeLimit,
+      final double? memoryLimit}) = _$TaskImpl;
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$TaskImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
-  DateTime get endDate;
-  @override
-  Complexity get complexity;
-  @override
-  List<ProgrammingLanguage> get languages;
-  @override
+  int get ejudgeId;
+  @override // required Complexity complexity,
+// required List<ProgrammingLanguage> languages,
   String get title;
   @override
   String get description;
   @override
+  DateTime? get finishTime;
+  @override
   List<Test>? get examples;
   @override
-  double? get maxTime;
+  double? get timeLimit;
   @override
-  double? get maxMemory;
+  double? get memoryLimit;
   @override
   @JsonKey(ignore: true)
   _$$TaskImplCopyWith<_$TaskImpl> get copyWith =>

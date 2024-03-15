@@ -9,17 +9,19 @@ part 'task.freezed.dart';
 part 'task.g.dart';
 
 @freezed
+@JsonSerializable(fieldRename: FieldRename.snake)
 class Task with _$Task {
   const factory Task({
-    required String id,
-    required DateTime endDate,
-    required Complexity complexity,
-    required List<ProgrammingLanguage> languages,
+    required int id,
+    required int ejudgeId,
+    // required Complexity complexity,
+    // required List<ProgrammingLanguage> languages,
     required String title,
     required String description,
+    DateTime? finishTime,
     List<Test>? examples,
-    double? maxTime,
-    double? maxMemory,
+    double? timeLimit,
+    double? memoryLimit,
   }) = _Task;
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
