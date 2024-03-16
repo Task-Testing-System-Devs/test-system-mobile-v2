@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:test_system/src/features/rating/model/rating.dart';
 import 'package:test_system/src/shared/colors/colors.dart';
 
 class RatingWidget extends StatelessWidget {
   RatingWidget({
     required this.position,
+    required this.rating,
     super.key,
   }) : color = switch (position) {
           1 => AppColors.gold,
@@ -14,6 +17,7 @@ class RatingWidget extends StatelessWidget {
 
   final Color color;
   final int position;
+  final Rating rating;
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +45,12 @@ class RatingWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 16),
-          const Text('Студент Студентович'),
-          const Spacer(),
-          const Text('22'),
+          Expanded(
+            child: Text(
+              rating.userShortInfo.fullName,
+              overflow: TextOverflow.fade,
+            ),
+          ),
           const SizedBox(width: 16),
         ],
       ),
