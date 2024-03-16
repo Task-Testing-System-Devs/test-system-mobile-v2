@@ -17,4 +17,8 @@ enum ProgrammingLanguage {
   final String name;
 
   const ProgrammingLanguage(this.asset, this.name);
+
+  static ProgrammingLanguage fromNumber(int number) {
+    return ProgrammingLanguage.python;
+  }
 }

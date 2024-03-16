@@ -11,13 +11,13 @@ final ratingServiceProvider = Provider<RatingService>(
   ),
 );
 
-final ratingByMarksProvider = FutureProvider<List<Rating>>((ref) async {
+final ratingByMarksProvider = FutureProvider.autoDispose<List<Rating>>((ref) async {
   final ratingService = ref.watch(ratingServiceProvider);
   final rating = await ratingService.getRatingByMarks();
   return rating;
 });
 
-final ratingByTasksProvider = FutureProvider<List<Rating>>((ref) async {
+final ratingByTasksProvider = FutureProvider.autoDispose<List<Rating>>((ref) async {
   final ratingService = ref.watch(ratingServiceProvider);
   final rating = await ratingService.getRatingByTasks();
   return rating;

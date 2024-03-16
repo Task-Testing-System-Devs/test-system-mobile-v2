@@ -34,7 +34,7 @@ class AuthManager {
 
   Future<void> authFromStorage() async {
     final token = await _storageService.token;
-    if (token == null) return;
+    if (token == null || token.isEmpty) return;
 
     _tokenController.state = token;
   }

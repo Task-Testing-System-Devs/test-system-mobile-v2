@@ -14,14 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-Submission _$SubmissionFromJson(Map<String, dynamic> json) {
-  return _Submission.fromJson(json);
-}
-
 /// @nodoc
 mixin _$Submission {
-  String get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
   ProgrammingLanguage get language => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   double get usedTime => throw _privateConstructorUsedError;
@@ -43,8 +40,9 @@ abstract class $SubmissionCopyWith<$Res> {
       _$SubmissionCopyWithImpl<$Res, Submission>;
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String code,
+      @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
       ProgrammingLanguage language,
       String status,
       double usedTime,
@@ -81,7 +79,7 @@ class _$SubmissionCopyWithImpl<$Res, $Val extends Submission>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -127,8 +125,9 @@ abstract class _$$SubmissionImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String id,
+      {int id,
       String code,
+      @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
       ProgrammingLanguage language,
       String status,
       double usedTime,
@@ -163,7 +162,7 @@ class __$$SubmissionImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       code: null == code
           ? _value.code
           : code // ignore: cast_nullable_to_non_nullable
@@ -206,7 +205,7 @@ class _$SubmissionImpl implements _Submission {
   const _$SubmissionImpl(
       {required this.id,
       required this.code,
-      required this.language,
+      @JsonKey(fromJson: ProgrammingLanguage.fromNumber) required this.language,
       required this.status,
       required this.usedTime,
       required this.usedMemory,
@@ -218,10 +217,11 @@ class _$SubmissionImpl implements _Submission {
       _$$SubmissionImplFromJson(json);
 
   @override
-  final String id;
+  final int id;
   @override
   final String code;
   @override
+  @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
   final ProgrammingLanguage language;
   @override
   final String status;
@@ -284,8 +284,9 @@ class _$SubmissionImpl implements _Submission {
 
 abstract class _Submission implements Submission {
   const factory _Submission(
-      {required final String id,
+      {required final int id,
       required final String code,
+      @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
       required final ProgrammingLanguage language,
       required final String status,
       required final double usedTime,
@@ -298,10 +299,11 @@ abstract class _Submission implements Submission {
       _$SubmissionImpl.fromJson;
 
   @override
-  String get id;
+  int get id;
   @override
   String get code;
   @override
+  @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
   ProgrammingLanguage get language;
   @override
   String get status;

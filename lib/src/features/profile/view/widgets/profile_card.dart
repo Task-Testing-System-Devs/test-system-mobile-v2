@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:test_system/src/shared/colors/colors.dart';
+import 'package:test_system/src/shared/widgets/text_info_widget.dart';
+
+import '../../model/profile.dart';
 
 class ProfileCard extends StatelessWidget {
-  final ThemeData theme;
-  const ProfileCard({Key? key, required this.theme}) : super(key: key);
+  const ProfileCard({
+    Key? key,
+    required this.profile,
+  }) : super(key: key);
+
+  final Profile profile;
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -19,8 +28,9 @@ class ProfileCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Your Name",
+            '${profile.firstName} ${profile.lastName}',
             style: theme.textTheme.displaySmall,
+            overflow: TextOverflow.fade,
           ),
           const SizedBox(height: 16),
           Padding(
@@ -28,16 +38,17 @@ class ProfileCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("test"),
-                const SizedBox(height: 16),
-                Text(
-                  "Почта:",
-                  style: theme.textTheme.bodyMedium,
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  "test@edu.hse.ru",
-                  style: theme.textTheme.bodyMedium,
+                if (profile.department != null && profile.group != null)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: TextInfoWidget(
+                      primary: profile.department!,
+                      secondary: profile.group!,
+                    ),
+                  ),
+                TextInfoWidget(
+                  primary: 'Почта',
+                  secondary: profile.email,
                 ),
               ],
             ),

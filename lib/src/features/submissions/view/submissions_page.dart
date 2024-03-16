@@ -1,40 +1,52 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:test_system/src/features/submissions/model/submission.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_system/src/features/submissions/di/providers.dart';
 import 'package:test_system/src/features/submissions/view/widgets/submission_widget.dart';
 
-import '../../../shared/enums/programming_language.dart';
-
-class SubmissionsPage extends StatelessWidget {
+class SubmissionsPage extends ConsumerWidget {
   const SubmissionsPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              children: [
-                for (int i = 0; i < ProgrammingLanguage.values.length; ++i)
-                  for (final language in ProgrammingLanguage.values)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: SubmissionWidget(
-                        submission: Submission(
-                          id: '${i + 1}',
-                          code: 'a = int(input())',
-                          language: language,
-                          status: 'OK',
-                          usedTime: 2.5,
-                          usedMemory: 5.4,
-                        ),
-                      ),
+        child: ref.watch(submissionsProvider).when(
+              data: (submissions) {
+                if (submissions.isEmpty) {
+                  return const Center(
+                    child: Text(
+                      'Вы еще не решали задачи. Самое время этим заняться!',
+                      textAlign: TextAlign.center,
                     ),
-              ],
+                  );
+                }
+                return SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Column(
+                      children: [
+                        for (final submission in submissions)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: SubmissionWidget(
+                              submission: submission,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+              error: (e, s) {
+                return Center(
+                  child: Text('$e $s'),
+                );
+              },
+              loading: () => const Center(
+                child: CircularProgressIndicator(),
+              ),
             ),
-          ),
-        ),
       ),
     );
   }

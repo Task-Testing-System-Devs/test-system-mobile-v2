@@ -11,13 +11,14 @@ final contestServiceProvider = Provider<ContestService>(
   ),
 );
 
-final contestsProvider = FutureProvider<List<Contest>>((ref) async {
+final contestsProvider = FutureProvider.autoDispose<List<Contest>>((ref) async {
   final contestService = ref.watch(contestServiceProvider);
   final contests = await contestService.getContests();
   return contests;
 });
 
-final contestProvider = FutureProvider.family<Contest, int>((ref, id) async {
+final contestProvider =
+    FutureProvider.family.autoDispose<Contest, int>((ref, id) async {
   final contestService = ref.watch(contestServiceProvider);
   final contest = await contestService.getContest(id);
   return contest;
