@@ -6,7 +6,7 @@ import '../interceptors/app_interceptor.dart';
 final dioProvider = Provider<Dio>((ref) {
   final dio = Dio();
   dio.options = BaseOptions(
-    baseUrl: 'http://192.168.204.246:8080',
+    baseUrl: 'http://91.193.182.178:8080',
     contentType: Headers.jsonContentType,
   );
   dio.interceptors.add(AppInterceptor());
@@ -16,7 +16,7 @@ final dioProvider = Provider<Dio>((ref) {
 final ejudgeDioProvider = Provider<Dio>((ref) {
   final dio = Dio();
   dio.options = BaseOptions(
-    baseUrl: 'http://192.168.204.246:3000',
+    baseUrl: 'http://91.193.182.178:3000',
     contentType: Headers.jsonContentType,
   );
   dio.interceptors.add(AppInterceptor());

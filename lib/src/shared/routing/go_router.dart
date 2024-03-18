@@ -20,7 +20,8 @@ final routerProvider = Provider<GoRouter>(
   (ref) {
     final token = ref.watch(authTokenProvider);
 
-    final initialLocation = token == null ? '/auth' : '/contests';
+    final initialLocation =
+        token == null || token.isEmpty ? '/auth' : '/contests';
 
     final contestRoutes = [
       GoRoute(
