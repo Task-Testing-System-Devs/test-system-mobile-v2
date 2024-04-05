@@ -14,13 +14,7 @@ class SubmissionRemoteService extends SubmissionService {
   Future<List<Submission>> getSubmissions() async {
     try {
       final response = await _dio.get(
-        '$_ratingPath/get-all',
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWFjaGVyQGhzZS5ydSIsImlhdCI6MTcxMDUwOTU2MSwiZXhwIjoxNzExMTE0MzYxfQ.Vn7OKtDuJZ33eZysjKFh9Wx3GRwhc9zl0IoZzJGX4UQ'
-          },
-        ),
+        '$_ratingPath/get-all-user',
       );
       return Submission.listFromJson(response.data as List<dynamic>);
     } on DioException catch (e) {

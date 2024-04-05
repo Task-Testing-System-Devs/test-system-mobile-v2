@@ -12,7 +12,7 @@ class Submission with _$Submission {
   const factory Submission({
     required int id,
     required String code,
-    @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
+    @JsonKey(fromJson: ProgrammingLanguage.fromString)
     required ProgrammingLanguage language,
     required String status,
     required double usedTime,

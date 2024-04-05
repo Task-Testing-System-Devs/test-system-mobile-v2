@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_system/src/shared/assets/app_assets.dart';
@@ -54,7 +55,7 @@ class ContestWidget extends ConsumerWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Решить до ${contest.finishTime.day}.${contest.finishTime.month}.${contest.finishTime.year}',
+                          'Решить до 0${contest.finishTime.day}.0${contest.finishTime.month}.${contest.finishTime.year}',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: AppColors.textSecondary,
                           ),
@@ -102,7 +103,7 @@ class ContestWidget extends ConsumerWidget {
                       ),
                   ],
                 ),
-                const SizedBox(width: 24),
+                const Spacer(),
                 Image.asset(AppBanners.assetContest),
               ],
             ),

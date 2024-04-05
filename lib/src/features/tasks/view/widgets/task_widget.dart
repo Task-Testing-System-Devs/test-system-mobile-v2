@@ -56,7 +56,7 @@ class TaskWidget extends ConsumerWidget {
                         ),
                         const SizedBox(height: 4),
                         Text(
-                          'Решить до ${task.finishTime?.day}.${task.finishTime?.month}.${task.finishTime?.year}',
+                          'Решить до 02.05.2024',
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: AppColors.textSecondary,
                           ),
@@ -103,7 +103,7 @@ class TaskWidget extends ConsumerWidget {
                     // ),
                   ],
                 ),
-                const SizedBox(width: 24),
+                const Spacer(),
                 Image.asset(AppBanners.assetContest),
               ],
             ),

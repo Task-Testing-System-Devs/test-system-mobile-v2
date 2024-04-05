@@ -21,4 +21,11 @@ enum ProgrammingLanguage {
   static ProgrammingLanguage fromNumber(int number) {
     return ProgrammingLanguage.python;
   }
+
+  static ProgrammingLanguage fromString(String lang) {
+    if (lang == 'python3') {
+      return ProgrammingLanguage.python;
+    }
+    return ProgrammingLanguage.cPlusPlus;
+  }
 }

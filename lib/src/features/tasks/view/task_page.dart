@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_system/src/features/contests/di/providers.dart';
+import 'package:test_system/src/features/tasks/model/test.dart';
 import 'package:test_system/src/features/tasks/view/widgets/test_example_widget.dart';
 import 'package:test_system/src/shared/colors/colors.dart';
 import 'package:test_system/src/shared/widgets/app_elevated_button.dart';
@@ -38,6 +40,11 @@ class _TaskPageState extends ConsumerState<TaskPage> {
 
     final theme = Theme.of(context);
 
+    final tests = [
+      const Test(input: '1 2', output: '3'),
+      const Test(input: '-22 -15', output: '-37'),
+    ];
+
     return Scaffold(
       backgroundColor: AppColors.surface,
       appBar: AppBar(
@@ -45,15 +52,6 @@ class _TaskPageState extends ConsumerState<TaskPage> {
           task.title,
           style: theme.textTheme.headlineMedium,
         ),
-      ),
-      endDrawer: Column(
-        children: [
-          Container(
-            height: 848,
-            width: MediaQuery.sizeOf(context).width * 0.75,
-            color: AppColors.surface,
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -90,20 +88,19 @@ class _TaskPageState extends ConsumerState<TaskPage> {
                   const SizedBox(height: 16),
                   Text(task.description),
                   const SizedBox(height: 16),
-                  if (task.examples != null)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          for (int i = 0; i < task.examples!.length; ++i)
-                            TestExampleWidget(
-                              test: task.examples![i],
-                              exampleNumber: i + 1,
-                            ),
-                        ],
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (int i = 0; i < tests.length; ++i)
+                          TestExampleWidget(
+                            test: tests[i],
+                            exampleNumber: i + 1,
+                          ),
+                      ],
                     ),
+                  ),
                 ],
               ),
             ),
@@ -162,7 +159,7 @@ class _TaskPageState extends ConsumerState<TaskPage> {
                 onPressed: () {},
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: MediaQuery.paddingOf(context).bottom),
           ],
         ),
       ),

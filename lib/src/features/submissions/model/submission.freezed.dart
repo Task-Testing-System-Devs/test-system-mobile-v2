@@ -18,7 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Submission {
   int get id => throw _privateConstructorUsedError;
   String get code => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
+  @JsonKey(fromJson: ProgrammingLanguage.fromString)
   ProgrammingLanguage get language => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   double get usedTime => throw _privateConstructorUsedError;
@@ -42,7 +42,7 @@ abstract class $SubmissionCopyWith<$Res> {
   $Res call(
       {int id,
       String code,
-      @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
+      @JsonKey(fromJson: ProgrammingLanguage.fromString)
       ProgrammingLanguage language,
       String status,
       double usedTime,
@@ -127,7 +127,7 @@ abstract class _$$SubmissionImplCopyWith<$Res>
   $Res call(
       {int id,
       String code,
-      @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
+      @JsonKey(fromJson: ProgrammingLanguage.fromString)
       ProgrammingLanguage language,
       String status,
       double usedTime,
@@ -205,7 +205,7 @@ class _$SubmissionImpl implements _Submission {
   const _$SubmissionImpl(
       {required this.id,
       required this.code,
-      @JsonKey(fromJson: ProgrammingLanguage.fromNumber) required this.language,
+      @JsonKey(fromJson: ProgrammingLanguage.fromString) required this.language,
       required this.status,
       required this.usedTime,
       required this.usedMemory,
@@ -221,7 +221,7 @@ class _$SubmissionImpl implements _Submission {
   @override
   final String code;
   @override
-  @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
+  @JsonKey(fromJson: ProgrammingLanguage.fromString)
   final ProgrammingLanguage language;
   @override
   final String status;
@@ -286,7 +286,7 @@ abstract class _Submission implements Submission {
   const factory _Submission(
       {required final int id,
       required final String code,
-      @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
+      @JsonKey(fromJson: ProgrammingLanguage.fromString)
       required final ProgrammingLanguage language,
       required final String status,
       required final double usedTime,
@@ -303,7 +303,7 @@ abstract class _Submission implements Submission {
   @override
   String get code;
   @override
-  @JsonKey(fromJson: ProgrammingLanguage.fromNumber)
+  @JsonKey(fromJson: ProgrammingLanguage.fromString)
   ProgrammingLanguage get language;
   @override
   String get status;

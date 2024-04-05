@@ -19,12 +19,6 @@ class ContestRemoteService extends ContestService {
     try {
       final response = await _dio.get(
         '$_contestPath/get-all',
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWFjaGVyQGhzZS5ydSIsImlhdCI6MTcxMDUwOTU2MSwiZXhwIjoxNzExMTE0MzYxfQ.Vn7OKtDuJZ33eZysjKFh9Wx3GRwhc9zl0IoZzJGX4UQ'
-          },
-        ),
       );
       return Contest.listFromJson(response.data as List<dynamic>);
     } on DioException catch (e) {
@@ -44,12 +38,6 @@ class ContestRemoteService extends ContestService {
         queryParameters: {
           'id': contestId,
         },
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWFjaGVyQGhzZS5ydSIsImlhdCI6MTcxMDUwOTU2MSwiZXhwIjoxNzExMTE0MzYxfQ.Vn7OKtDuJZ33eZysjKFh9Wx3GRwhc9zl0IoZzJGX4UQ'
-          },
-        ),
       );
       return Contest.fromJson(response.data as Map<String, dynamic>);
     } on DioException catch (e) {

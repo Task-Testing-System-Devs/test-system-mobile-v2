@@ -9,7 +9,7 @@ part of 'submission.dart';
 Submission _$SubmissionFromJson(Map<String, dynamic> json) => Submission(
       id: json['id'] as int,
       code: json['code'] as String,
-      language: ProgrammingLanguage.fromNumber(json['language'] as int),
+      language: ProgrammingLanguage.fromString(json['language'] as String),
       status: json['status'] as String,
       usedTime: (json['used_time'] as num).toDouble(),
       usedMemory: (json['used_memory'] as num).toDouble(),
@@ -47,7 +47,7 @@ _$SubmissionImpl _$$SubmissionImplFromJson(Map<String, dynamic> json) =>
     _$SubmissionImpl(
       id: json['id'] as int,
       code: json['code'] as String,
-      language: ProgrammingLanguage.fromNumber(json['language'] as int),
+      language: ProgrammingLanguage.fromString(json['language'] as String),
       status: json['status'] as String,
       usedTime: (json['usedTime'] as num).toDouble(),
       usedMemory: (json['usedMemory'] as num).toDouble(),

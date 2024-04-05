@@ -36,6 +36,7 @@ final routerProvider = Provider<GoRouter>(
             },
             routes: [
               GoRoute(
+                parentNavigatorKey: ref.watch(navigatorKeyProvider),
                 path: ':task_id',
                 builder: (context, state) {
                   final contestId = int.parse(

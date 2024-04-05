@@ -15,12 +15,6 @@ class RatingRemoteService extends RatingService {
     try {
       final response = await _dio.get(
         '$_ratingPath/by-marks',
-        options: Options(
-          headers: {
-            'Authorization':
-                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZWFjaGVyQGhzZS5ydSIsImlhdCI6MTcxMDUwOTU2MSwiZXhwIjoxNzExMTE0MzYxfQ.Vn7OKtDuJZ33eZysjKFh9Wx3GRwhc9zl0IoZzJGX4UQ'
-          },
-        ),
       );
       return Rating.listFromJson(response.data as List<dynamic>);
     } on DioException catch (e) {
