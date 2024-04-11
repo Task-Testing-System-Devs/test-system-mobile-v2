@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_system/src/shared/routing/ui/snack_bar.dart';
 
 class NavigationManager {
   const NavigationManager(
@@ -23,5 +25,9 @@ class NavigationManager {
 
   void pop<T extends Object?>([T? result]) {
     _goRouter.pop(result);
+  }
+
+  void showSnackBar(BuildContext context, String message) {
+    AppSnackBar.show(context, message: message);
   }
 }

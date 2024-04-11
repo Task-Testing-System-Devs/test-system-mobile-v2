@@ -26,6 +26,9 @@ enum ProgrammingLanguage {
     if (lang == 'python3') {
       return ProgrammingLanguage.python;
     }
+    if (lang == 'java') {
+      return ProgrammingLanguage.java;
+    }
     return ProgrammingLanguage.cPlusPlus;
   }
 }

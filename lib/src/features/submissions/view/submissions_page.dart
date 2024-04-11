@@ -26,7 +26,7 @@ class SubmissionsPage extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
                       children: [
-                        for (final submission in submissions)
+                        for (final submission in submissions.reversed)
                           Padding(
                             padding: const EdgeInsets.only(bottom: 8),
                             child: SubmissionWidget(

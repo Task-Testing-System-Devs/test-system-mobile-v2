@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_system/src/features/contests/di/providers.dart';
+import 'package:test_system/src/features/submissions/model/submission.dart';
+import 'package:test_system/src/features/submissions/view/widgets/submission_widget.dart';
 import 'package:test_system/src/features/tasks/model/test.dart';
 import 'package:test_system/src/features/tasks/view/widgets/test_example_widget.dart';
 import 'package:test_system/src/shared/colors/colors.dart';
+import 'package:test_system/src/shared/routing/di/providers.dart';
 import 'package:test_system/src/shared/widgets/app_elevated_button.dart';
 import 'package:test_system/src/shared/widgets/text_info_widget.dart';
 
@@ -21,6 +24,9 @@ class TaskPage extends ConsumerStatefulWidget {
 }
 
 class _TaskPageState extends ConsumerState<TaskPage> {
+  bool isVerdictShown = false;
+  bool isLoading = true;
+
   @override
   Widget build(BuildContext context) {
     final contest = ref.watch(contestProvider(widget.contestId));
@@ -156,7 +162,41 @@ class _TaskPageState extends ConsumerState<TaskPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: AppElevatedButton(
                 text: 'Отправить решение',
-                onPressed: () {},
+                onPressed: () async {
+                  await Future.delayed(const Duration(seconds: 1));
+                  if (!mounted) return;
+                  ref.read(navigationManagerProvider).showSnackBar(
+                        context,
+                        'Ваше решение успешно отправлено',
+                      );
+                  setState(() {
+                    isVerdictShown = true;
+                  });
+                  await Future.delayed(const Duration(seconds: 3));
+                  setState(() {
+                    isLoading = false;
+                  });
+                },
+              ),
+            ),
+            const SizedBox(height: 8),
+            Visibility(
+              visible: isVerdictShown,
+              child: _Card(
+                child: isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : SubmissionWidget(
+                        submission: Submission(
+                          id: 3,
+                          code: ref.watch(_codeControllerProvider).text,
+                          language: ref.watch(_chosenLanguageProvider)!,
+                          status: 'ok',
+                          usedTime: 0.21,
+                          usedMemory: 2.76,
+                        ),
+                      ),
               ),
             ),
             SizedBox(height: MediaQuery.paddingOf(context).bottom),

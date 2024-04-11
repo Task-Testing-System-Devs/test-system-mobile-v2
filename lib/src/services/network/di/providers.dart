@@ -9,7 +9,7 @@ final dioProvider = Provider<Dio>((ref) {
   dio.options = BaseOptions(
     baseUrl: 'http://91.193.182.178:8080',
     contentType: Headers.jsonContentType,
-    headers: {'Authorization': 'Bearer ${ref.watch(authTokenProvider)}'},
+    headers: ref.watch(authTokenProvider) != null ? {'Authorization': 'Bearer ${ref.watch(authTokenProvider)}'} : {},
   );
   dio.interceptors.add(AppInterceptor());
   return dio;
